@@ -16,8 +16,8 @@ export default class Deck extends Component {
     controls: PropTypes.bool,
     globalStyles: PropTypes.bool,
     history: PropTypes.object,
-    progress: PropTypes.oneOf(["pacman", "bar", "number", "none"]),
-    theme: PropTypes.object,
+    progress: PropTypes.oneOf(["pacman", "bar", "number", "none", "custom"]),
+    progressAction: React.PropTypes.func,    theme: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
   };

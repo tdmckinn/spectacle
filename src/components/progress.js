@@ -33,7 +33,7 @@ export default class Progress extends Component {
   }
 
   render() {
-    const { type, currentSlideIndex, items } = this.props;
+    const { type, currentSlideIndex, items, custom } = this.props;
     let style = this.context.styles.progress;
     let markup;
     switch (type) {
@@ -70,6 +70,22 @@ export default class Progress extends Component {
           <div style={[style.bar, this.getWidth()]} />
         );
         break;
+      case "custom":
+        style = style.pacman;
+        markup = (
+          <div>
+           { custom([this.getPointPosition(currentSlideIndex)], currentSlideIndex, items) }
+            {items.map((item, i) => {
+              return (
+                <div
+                  style={[style.point, this.getPointStyle(i)]}
+                  key={`presentation-progress-${i}`}
+                />
+              );
+            })}
+          </div>
+        );
+        break;
       default:
         return false;
     }
@@ -82,9 +98,10 @@ export default class Progress extends Component {
 }
 
 Progress.propTypes = {
+  custom: PropTypes.func,
   currentSlideIndex: PropTypes.number,
   items: PropTypes.array,
-  type: PropTypes.oneOf(["pacman", "bar", "number", "none"])
+  type: PropTypes.oneOf(["pacman", "bar", "number", "none", "custom"])
 };
 
 Progress.contextTypes = {

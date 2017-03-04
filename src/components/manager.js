@@ -39,8 +39,8 @@ export default class Manager extends Component {
     dispatch: PropTypes.func,
     fragment: PropTypes.object,
     globalStyles: PropTypes.bool,
-    progress: PropTypes.oneOf(["pacman", "bar", "number", "none"]),
-    route: PropTypes.object,
+    progress: PropTypes.oneOf(["pacman", "bar", "number", "none", "custom"]),
+    progressAction: React.PropTypes.func,    route: PropTypes.object,
     transition: PropTypes.array,
     transitionDuration: PropTypes.number
   };
@@ -484,6 +484,7 @@ export default class Manager extends Component {
             items={this.state.slideReference}
             currentSlideIndex={this._getSlideIndex()}
             type={this.props.progress}
+            custom={this.props.progressAction}
           /> : ""
         }
 
